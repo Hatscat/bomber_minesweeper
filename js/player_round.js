@@ -8,11 +8,13 @@ function player_round ()
 
 		if (is_cell_boss(game.mouse.cell))
 		{
-			alert("YOU WIN!");
+			if (confirm("YOU WIN!"))
+				init_game();
 		}
 		else if (is_cell_bomb(game.mouse.cell))
 		{
-			alert("YOU LOSE...");
+			if (confirm("YOU LOSE..."))
+				init_game();
 		}
 	}
 	else if (game.mouse.buttons & 2) // right click

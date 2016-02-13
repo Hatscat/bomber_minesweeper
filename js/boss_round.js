@@ -19,19 +19,12 @@ function boss_round ()
 		break;
 		case 1: // recover discovered cells if possible
 		case 2:
-			var cells = get_cells_around(game.boss_cell).filter(c => !is_cell_hidden(c));
-
-			if (cells.length > 0)
-			{
-				cells.forEach(toggle_cell_hidden);
-			}
-			else
-			{
+			if (!boss_recover_cells_around())
 				boss_move();
-			}
 		break;
 		default:
-			boss_move();
+			if(!boss_move())
+				boss_recover_cells_around();
 		break;
 	}
 }
@@ -45,10 +38,20 @@ function boss_move ()
 		toggle_cell_boss(game.boss_cell);
 		game.boss_cell = cells[Math.floor(Math.random() * cells.length)];
 		toggle_cell_boss(game.boss_cell);
+		return true;
 	}
-	else
+	return false;
+}
+
+function boss_recover_cells_around ()
+{
+	var cells = get_cells_around(game.boss_cell).filter(c => !is_cell_hidden(c));
+
+	if (cells.length > 0)
 	{
-		console.log("boss cannot moves");
+		cells.forEach(toggle_cell_hidden);
+		return true;
 	}
+	return false;
 }
 
