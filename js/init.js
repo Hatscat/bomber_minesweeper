@@ -16,7 +16,8 @@ function loaded ()
 		cols_nb: 16,
 		rows_nb: 16,
 		bombs_nb: 20,
-		map_coord: { x: 0, y: 0, w: 0, h: 0 }
+		map_coord: { x: 0, y: 0, w: 0, h: 0 },
+		victory: false
 	};
 	
 	visible_canvas.style.top = game.canvas_y + "px";
@@ -103,10 +104,12 @@ function init_events ()
 
 	addEventListener("mousedown", function (e)
 	{
-
 		game.mouse.buttons = e.buttons;
+
 		player_round();
-		boss_round();
+		if (!game.victory)
+			boss_round();
+
 		requestAnimationFrame(draw);
 	}, false);
 

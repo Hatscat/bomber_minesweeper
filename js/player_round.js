@@ -8,6 +8,8 @@ function player_round ()
 
 		if (is_cell_boss(game.mouse.cell))
 		{
+			game.victory = true;
+
 			if (confirm("YOU WIN!"))
 				init_game();
 		}
