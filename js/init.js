@@ -16,8 +16,7 @@ function loaded ()
 		cols_nb: 16,
 		rows_nb: 16,
 		bombs_nb: 20,
-		map_coord: { x: 0, y: 0, w: 0, h: 0 },
-		victory: false
+		map_coord: { x: 0, y: 0, w: 0, h: 0 }
 	};
 	
 	visible_canvas.style.top = game.canvas_y + "px";
@@ -46,6 +45,7 @@ function init_game ()
 
 	game.buffer_ctx.font = (game.cell_size / 2) + "px Arial";
 
+	game.victory = false;
 	game.cells = new Uint8ClampedArray(game.cols_nb * game.rows_nb);
 
 	game.boss_cell = Math.floor(Math.random() * game.cells.length);
