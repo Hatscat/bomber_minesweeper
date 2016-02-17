@@ -1,6 +1,6 @@
 "use strict"
 
-addEventListener("load", loaded, false);
+addEventListener("load", setTimeout.bind(window, loaded, 1000), false);
 
 function loaded ()
 {
